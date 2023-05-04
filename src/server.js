@@ -15,7 +15,15 @@ const actTodoRouter = require("./activeTodos/routes");
 
 const app = (express());
 
+app.use(express.json());
+
 const syncTables = () => {
+
+    ActiveTodo.belongsTo(User);
+    DoneTodo.belongsTo(User);
+    User.hasMany(DoneTodo);
+    User.hasMany(ActiveTodo);
+
     User.sync();
     DoneTodo.sync();
     ActiveTodo.sync();
