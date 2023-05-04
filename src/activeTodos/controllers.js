@@ -14,6 +14,20 @@ const addActiveTodo = async (req, res) => {
     }
   };
 
+
+  const deleteActiveTodo = async (req, res) => {
+    try{
+        console.log(req.body)
+
+        const delTodo = await ActiveTodo.destroy(req.body);
+
+        res.status(201).json({ message: "success", delTodo: delTodo });
+    } catch (error) {
+      res.status(501).json({ errorMessage: error.message, error: error });
+    }        
+}
+
   module.exports = {
-    addActiveTodo
+    addActiveTodo,
+    deleteActiveTodo
   }

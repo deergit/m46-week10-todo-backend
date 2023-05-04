@@ -16,7 +16,7 @@ const actTodoRouter = require("./activeTodos/routes");
 const app = (express());
 
 const syncTables = () => {
-    User.sync()
+    User.sync();
     DoneTodo.sync();
     ActiveTodo.sync();
 }
