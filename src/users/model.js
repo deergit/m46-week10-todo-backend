@@ -10,6 +10,6 @@ const User = connection.define("User", {
     type: DataTypes.STRING,
     allowNull: false
   }
-}, { indexes: [{ unique: true, fields: ["username", "email"] }] });
+}, { indexes: [{ unique: true, fields: ["username"] }] });
 
 module.exports = User;
