@@ -19,7 +19,7 @@ const addActiveTodo = async (req, res) => {
     try{
         console.log(req.body)
 
-        const delTodo = await ActiveTodo.destroy(req.body);
+        const delTodo = await ActiveTodo.destroy({ where: {activeTodo: req.body.activeTodo} });
 
         res.status(201).json({ message: "success", delTodo: delTodo });
     } catch (error) {

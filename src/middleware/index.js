@@ -7,7 +7,7 @@ const saltRounds = parseInt(process.env.SALT_ROUNDS);
 
 const hashPass = async (req, res, next) => {
   try {
-    if (req.body.password) {
+    if (req.body && req.body.password) {
       req.body.password = await bcrypt.hash(req.body.password, saltRounds);
     }
     next();

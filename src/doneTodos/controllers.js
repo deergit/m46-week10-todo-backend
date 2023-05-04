@@ -19,7 +19,7 @@ const deleteDoneTodo = async (req, res) => {
     try{
         console.log(req.body)
 
-        const delTodo = await DoneTodo.destroy(req.body);
+        const delTodo = await DoneTodo.destroy({ where: { doneTodo: req.body.doneTodo } });
 
         res.status(201).json({ message: "success", delTodo: delTodo });
     } catch (error) {
