@@ -1,4 +1,6 @@
 const User = require("./model");
+// const ActiveTodo = require("../activeTodos/model");
+// const DoneTodo = require("../doneTodos/model");
 const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
@@ -31,11 +33,18 @@ const registerUser = async (req, res) => {
 
       const token = jwt.sign({ "id": req.user.id }, process.env.SECRET_KEY)
       console.log(token)
+
+    //   const user = await User.findByPk(req.user.id, {
+    //     include: [{ model: ActiveTodo, as: "activeTodos" }, { model: DoneTodo, as: "doneTodos" }]
+    // });
+
         res.status(200).json({ 
             message: "success", 
             user: {
                 username: req.user.username,
-                token: token
+                token: token,
+                // activeTodos: user.activeTodos,
+                // doneTodos: user.doneTodos
         }
     })
     } catch (error) {
