@@ -34,17 +34,13 @@ const registerUser = async (req, res) => {
       const token = jwt.sign({ "id": req.user.id }, process.env.SECRET_KEY)
       console.log(token)
 
-    //   const user = await User.findByPk(req.user.id, {
-    //     include: [{ model: ActiveTodo, as: "activeTodos" }, { model: DoneTodo, as: "doneTodos" }]
-    // });
+
 
         res.status(200).json({ 
             message: "success", 
             user: {
                 username: req.user.username,
-                token: token,
-                // activeTodos: user.activeTodos,
-                // doneTodos: user.doneTodos
+                token: token
         }
     })
     } catch (error) {
