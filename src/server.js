@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 
 const port = process.env.PORT || 5001;
 
@@ -11,12 +12,19 @@ const userRouter = require("./users/routes");
 const doneTodoRouter = require("./doneTodos/routes");
 const actTodoRouter = require("./activeTodos/routes");
 
-
-
 const app = (express());
+app.use(cors())
+
+app.use(express.json());
 
 const syncTables = () => {
-    User.sync()
+
+    ActiveTodo.belongsTo(User);
+    DoneTodo.belongsTo(User);
+    User.hasMany(DoneTodo);
+    User.hasMany(ActiveTodo);
+
+    User.sync();
     DoneTodo.sync();
     ActiveTodo.sync();
 }

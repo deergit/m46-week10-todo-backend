@@ -4,7 +4,7 @@ const doneTodoRouter = Router();
 const { addDoneTodo, deleteDoneTodo } = require("./controllers");
 const { tokenCheck } = require("../middleware");
 
-doneTodoRouter.post("/donetodos/adddonetodo", tokenCheck, addDoneTodo);
+doneTodoRouter.post("/donetodos/addonetodo", tokenCheck, addDoneTodo);
 
 doneTodoRouter.delete("/donetodos/deletedonetodo", tokenCheck, deleteDoneTodo);
 
